@@ -190,12 +190,22 @@
       letter-spacing: 0;
     }
 
-    h1 .headline-accent {
+    h1 .headline-green,
+    h1 .headline-blue,
+    h1 .headline-amber {
       display: inline;
-      background: linear-gradient(90deg, #0f7a3f 0%, #138a66 48%, #1769d1 100%);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
+    }
+
+    h1 .headline-green {
+      color: #0f7a3f;
+    }
+
+    h1 .headline-blue {
+      color: #1769d1;
+    }
+
+    h1 .headline-amber {
+      color: #b45f06;
     }
 
     .headline-wrap {
@@ -204,7 +214,7 @@
       padding: 0 0.08em;
       box-decoration-break: clone;
       -webkit-box-decoration-break: clone;
-      background: linear-gradient(180deg, rgba(255, 255, 255, 0) 58%, rgba(232, 247, 238, 0.95) 58%);
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0) 62%, rgba(255, 246, 219, 0.95) 62%);
     }
 
     .hero-copy p {
@@ -499,7 +509,7 @@
     <section class="hero" aria-labelledby="page-title">
       <div class="hero-copy">
         <p class="eyebrow">curl-ready Linux tools</p>
-        <h1 id="page-title"><span class="headline-wrap"><span class="headline-accent">Install useful things</span> before your coffee gets suspicious.</span></h1>
+        <h1 id="page-title"><span class="headline-wrap"><span class="headline-green">Install useful things</span> <span class="headline-blue">before your coffee</span> <span class="headline-amber">gets suspicious.</span></span></h1>
         <p>
           One-command installers for people who believe the terminal is a perfectly
           reasonable place to live. Add ComAI for shell-side AI help, or LocalAI
