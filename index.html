@@ -181,12 +181,30 @@
     }
 
     h1 {
+      position: relative;
       max-width: 760px;
       margin: 0;
-      color: var(--text);
+      color: #12351f;
       font-size: clamp(44px, 7vw, 82px);
-      line-height: 0.95;
+      line-height: 1;
       letter-spacing: 0;
+    }
+
+    h1 .headline-accent {
+      display: inline;
+      background: linear-gradient(90deg, #0f7a3f 0%, #138a66 48%, #1769d1 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .headline-wrap {
+      position: relative;
+      display: inline;
+      padding: 0 0.08em;
+      box-decoration-break: clone;
+      -webkit-box-decoration-break: clone;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0) 58%, rgba(232, 247, 238, 0.95) 58%);
     }
 
     .hero-copy p {
@@ -481,7 +499,7 @@
     <section class="hero" aria-labelledby="page-title">
       <div class="hero-copy">
         <p class="eyebrow">curl-ready Linux tools</p>
-        <h1 id="page-title">Useful Linux tools, installed before your coffee cools.</h1>
+        <h1 id="page-title"><span class="headline-wrap"><span class="headline-accent">Install useful things</span> before your coffee gets suspicious.</span></h1>
         <p>
           One-command installers for people who believe the terminal is a perfectly
           reasonable place to live. Add ComAI for shell-side AI help, or LocalAI
