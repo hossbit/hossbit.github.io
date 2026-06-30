@@ -197,14 +197,6 @@
       line-height: 1.65;
     }
 
-    .hero-copy .hero-funny {
-      margin-top: 14px;
-      color: var(--green);
-      font-size: 22px;
-      font-weight: 800;
-      line-height: 1.35;
-    }
-
     .terminal {
       align-self: center;
       overflow: hidden;
@@ -265,10 +257,11 @@
 
     .section-title {
       display: flex;
-      align-items: end;
-      justify-content: space-between;
+      align-items: center;
+      justify-content: center;
       gap: 16px;
       margin: 6px 0 16px;
+      text-align: center;
     }
 
     .section-title h2 {
@@ -277,12 +270,13 @@
       letter-spacing: 0;
     }
 
-    .section-title p {
-      max-width: 520px;
-      margin: 0;
+    .projects-intro {
+      max-width: 680px;
+      margin: 0 auto 10px;
       color: var(--muted);
+      font-size: 17px;
       line-height: 1.55;
-      text-align: right;
+      text-align: center;
     }
 
     .projects {
@@ -451,7 +445,7 @@
         flex-direction: column;
       }
 
-      .section-title p {
+      .projects-intro {
         text-align: left;
       }
 
@@ -487,8 +481,7 @@
     <section class="hero" aria-labelledby="page-title">
       <div class="hero-copy">
         <p class="eyebrow">curl-ready Linux tools</p>
-        <h1 id="page-title">Hossbit: installers for Linux lovers.</h1>
-        <p class="hero-funny">Install useful things before your coffee gets suspicious.</p>
+        <h1 id="page-title">Install useful things before your coffee gets suspicious.</h1>
         <p>
           One-command installers for people who believe the terminal is a perfectly
           reasonable place to live. Add ComAI for shell-side AI help, or LocalAI
@@ -519,9 +512,9 @@
     </section>
 
     <section aria-labelledby="projects-title">
+      <p class="projects-intro">Copy a command, inspect the source, then let the terminal do its little victory lap.</p>
       <div class="section-title">
         <h2 id="projects-title">Projects</h2>
-        <p>Copy a command, inspect the source, then let the terminal do its little victory lap.</p>
       </div>
 
       <div class="projects">
