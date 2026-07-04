@@ -3,7 +3,7 @@ set -euo pipefail
 
 LOCALAI_REPO_URL="${LOCALAI_REPO_URL:-https://github.com/hossbit/local-ai-server.git}"
 LOCALAI_TARBALL_BASE="${LOCALAI_TARBALL_BASE:-https://github.com/hossbit/local-ai-server/archive}"
-LOCALAI_REF="${LOCALAI_REF:-main}"
+LOCALAI_REF="${LOCALAI_REF:-v1.1.10}"
 
 log() {
   printf 'localai-install: %s\n' "$*"
@@ -45,7 +45,7 @@ Choose a llama.cpp backend:
 Environment:
   LOCALAI_DIR         Install directory. Default is controlled by the LocalAI installer.
   LLAMA_CPP_BACKEND   llama.cpp backend. Default is controlled by the LocalAI installer.
-  LOCALAI_REF         Git branch or tag to install. Default: main
+  LOCALAI_REF         Git branch or tag to install. Default: v1.1.10
   LOCALAI_REPO_URL    Git repository URL. Default: https://github.com/hossbit/local-ai-server.git
 EOF
 }

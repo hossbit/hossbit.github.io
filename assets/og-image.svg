@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Hossbit Installers</title>
+  <desc id="desc">Open graph image for Hossbit Linux installer pages.</desc>
+  <rect width="1200" height="630" fill="#fffdf6"/>
+  <path d="M0 0h1200v630H0z" fill="#fff8df"/>
+  <path d="M0 90h1200M0 180h1200M0 270h1200M0 360h1200M0 450h1200M0 540h1200" stroke="#f0dfaa" stroke-width="2"/>
+  <path d="M140 150h920a32 32 0 0 1 32 32v266a32 32 0 0 1-32 32H140a32 32 0 0 1-32-32V182a32 32 0 0 1 32-32z" fill="#21170e"/>
+  <path d="M108 206h984" stroke="#4a3217" stroke-width="2"/>
+  <circle cx="156" cy="180" r="11" fill="#d13f3f"/>
+  <circle cx="192" cy="180" r="11" fill="#f3b700"/>
+  <circle cx="228" cy="180" r="11" fill="#43a047"/>
+  <text x="154" y="290" fill="#ffe082" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="42" font-weight="700">$ curl -fsSL hossbit.github.io | bash</text>
+  <text x="154" y="370" fill="#ffffff" font-family="Inter, Arial, sans-serif" font-size="72" font-weight="800">Hossbit Installers</text>
+  <text x="158" y="425" fill="#eadfbe" font-family="Inter, Arial, sans-serif" font-size="32">ComAI + LocalAI Server for Linux</text>
+  <rect x="760" y="86" width="300" height="86" rx="12" fill="#f3b700" stroke="#111815" stroke-width="4"/>
+  <text x="804" y="145" fill="#111815" font-family="Inter, Arial, sans-serif" font-size="42" font-weight="900">LINUX AI</text>
+</svg>
