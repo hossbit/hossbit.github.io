@@ -3,7 +3,8 @@ set -euo pipefail
 
 LOCALAI_REPO_URL="${LOCALAI_REPO_URL:-https://github.com/hossbit/local-ai-server.git}"
 LOCALAI_TARBALL_BASE="${LOCALAI_TARBALL_BASE:-https://github.com/hossbit/local-ai-server/archive}"
-LOCALAI_REF="${LOCALAI_REF:-v1.1.11}"
+LOCALAI_LATEST_API="${LOCALAI_LATEST_API:-https://api.github.com/repos/hossbit/local-ai-server/releases/latest}"
+LOCALAI_REF="${LOCALAI_REF:-latest}"
 
 log() {
   printf 'localai-install: %s\n' "$*"
@@ -32,6 +33,19 @@ archive_url() {
   esac
 }
 
+resolve_ref() {
+  local latest_json latest_ref
+
+  [ "$LOCALAI_REF" = "latest" ] || return 0
+
+  log "Resolving latest LocalAI release"
+  latest_json="$(curl -fsSL "$LOCALAI_LATEST_API")" ||
+    fail "Could not fetch latest LocalAI release metadata."
+  latest_ref="$(sed -n 's/.*"tag_name"[[:space:]]*:[[:space:]]*"\([^"]*\)".*/\1/p' <<<"$latest_json" | head -n 1)"
+  [[ -n "${latest_ref:-}" ]] || fail "Could not find latest LocalAI release tag."
+  LOCALAI_REF="$latest_ref"
+}
+
 usage() {
   cat <<EOF
 Usage: curl -fsSL https://hossbit.github.io/localai/install.sh | bash
@@ -45,7 +59,7 @@ Choose a llama.cpp backend:
 Environment:
   LOCALAI_DIR         Install directory. Default is controlled by the LocalAI installer.
   LLAMA_CPP_BACKEND   llama.cpp backend. Default is controlled by the LocalAI installer.
-  LOCALAI_REF         Git branch or tag to install. Default: v1.1.11
+  LOCALAI_REF         Git branch or tag to install. Default: latest release
   LOCALAI_REPO_URL    Git repository URL. Default: https://github.com/hossbit/local-ai-server.git
 EOF
 }
@@ -60,6 +74,7 @@ esac
 have bash || fail "bash is required."
 have curl || fail "curl is required."
 have mktemp || fail "mktemp is required."
+resolve_ref
 
 tmp_dir="$(mktemp -d)"
 cleanup() {

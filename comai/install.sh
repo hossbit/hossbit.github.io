@@ -3,7 +3,8 @@ set -euo pipefail
 
 COMAI_REPO_URL="${COMAI_REPO_URL:-https://github.com/hossbit/comai-linux-assistant.git}"
 COMAI_TARBALL_BASE="${COMAI_TARBALL_BASE:-https://github.com/hossbit/comai-linux-assistant/archive}"
-COMAI_REF="${COMAI_REF:-v2.3.17}"
+COMAI_LATEST_API="${COMAI_LATEST_API:-https://api.github.com/repos/hossbit/comai-linux-assistant/releases/latest}"
+COMAI_REF="${COMAI_REF:-latest}"
 
 log() {
   printf 'comai-install: %s\n' "$*"
@@ -32,6 +33,19 @@ archive_url() {
   esac
 }
 
+resolve_ref() {
+  local latest_json latest_ref
+
+  [ "$COMAI_REF" = "latest" ] || return 0
+
+  log "Resolving latest ComAI release"
+  latest_json="$(curl -fsSL "$COMAI_LATEST_API")" ||
+    fail "Could not fetch latest ComAI release metadata."
+  latest_ref="$(sed -n 's/.*"tag_name"[[:space:]]*:[[:space:]]*"\([^"]*\)".*/\1/p' <<<"$latest_json" | head -n 1)"
+  [[ -n "${latest_ref:-}" ]] || fail "Could not find latest ComAI release tag."
+  COMAI_REF="$latest_ref"
+}
+
 usage() {
   cat <<EOF
 Usage: curl -fsSL https://hossbit.github.io/comai/install.sh | bash
@@ -41,7 +55,7 @@ Custom install directory:
 
 Environment:
   COMAI_INSTALL_DIR   Install directory. Default is controlled by the ComAI installer.
-  COMAI_REF           Git branch or tag to install. Default: v2.3.17
+  COMAI_REF           Git branch or tag to install. Default: latest release
   COMAI_REPO_URL      Git repository URL. Default: https://github.com/hossbit/comai-linux-assistant.git
 EOF
 }
@@ -56,6 +70,7 @@ esac
 have bash || fail "bash is required."
 have curl || fail "curl is required."
 have mktemp || fail "mktemp is required."
+resolve_ref
 
 tmp_dir="$(mktemp -d)"
 cleanup() {
