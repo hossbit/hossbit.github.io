@@ -3,7 +3,7 @@ set -euo pipefail
 
 COMAI_REPO_URL="${COMAI_REPO_URL:-https://github.com/hossbit/comai-linux-assistant.git}"
 COMAI_TARBALL_BASE="${COMAI_TARBALL_BASE:-https://github.com/hossbit/comai-linux-assistant/archive}"
-COMAI_REF="${COMAI_REF:-v2.3.14}"
+COMAI_REF="${COMAI_REF:-v2.3.17}"
 
 log() {
   printf 'comai-install: %s\n' "$*"
@@ -41,7 +41,7 @@ Custom install directory:
 
 Environment:
   COMAI_INSTALL_DIR   Install directory. Default is controlled by the ComAI installer.
-  COMAI_REF           Git branch or tag to install. Default: v2.3.14
+  COMAI_REF           Git branch or tag to install. Default: v2.3.17
   COMAI_REPO_URL      Git repository URL. Default: https://github.com/hossbit/comai-linux-assistant.git
 EOF
 }
