@@ -426,8 +426,18 @@
 
     .actions {
       display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
+      flex-wrap: nowrap;
+      gap: 6px;
+    }
+
+    .actions .button {
+      flex: 1 1 auto;
+      min-width: 0;
+      width: auto;
+      min-height: 40px;
+      padding: 8px 6px;
+      font-size: 12px;
+      white-space: nowrap;
     }
 
     .button.primary {
@@ -496,8 +506,7 @@
         justify-content: center;
       }
 
-      .nav-links a,
-      .actions .button {
+      .nav-links a {
         flex: 1 1 150px;
       }
 
@@ -721,10 +730,10 @@
               <pre><code>curl -fsSL https://hossbit.github.io/comai/install.sh | bash</code></pre>
             </div>
             <div class="actions">
-              <a class="button primary" href="https://github.com/hossbit/comai-linux-assistant">View source</a>
-              <a class="button" href="/comai/install.sh">View install.sh</a>
-              <a class="button" href="https://github.com/hossbit/comai-linux-assistant/releases/latest">Latest release</a>
-              <a class="button" href="https://github.com/hossbit/comai-linux-assistant-wiki/blob/main/Quick-Start.md">Documentation</a>
+              <a class="button primary" href="https://github.com/hossbit/comai-linux-assistant">Source</a>
+              <a class="button" href="/comai/install.sh">Install.sh</a>
+              <a class="button" href="https://github.com/hossbit/comai-linux-assistant/releases/latest">Releases</a>
+              <a class="button" href="https://github.com/hossbit/comai-linux-assistant-wiki/blob/main/Quick-Start.md">Docs</a>
             </div>
           </div>
         </article>
@@ -754,10 +763,10 @@
               <pre><code>curl -fsSL https://hossbit.github.io/localai/install.sh | bash</code></pre>
             </div>
             <div class="actions">
-              <a class="button primary" href="https://github.com/hossbit/local-ai-server">View source</a>
-              <a class="button" href="/localai/install.sh">View install.sh</a>
-              <a class="button" href="https://github.com/hossbit/local-ai-server/releases/latest">Latest release</a>
-              <a class="button" href="https://github.com/hossbit/comai-linux-assistant-wiki/blob/main/Local-AI-Service.md">Documentation</a>
+              <a class="button primary" href="https://github.com/hossbit/local-ai-server">Source</a>
+              <a class="button" href="/localai/install.sh">Install.sh</a>
+              <a class="button" href="https://github.com/hossbit/local-ai-server/releases/latest">Releases</a>
+              <a class="button" href="https://github.com/hossbit/comai-linux-assistant-wiki/blob/main/Local-AI-Service.md">Docs</a>
             </div>
           </div>
         </article>
