@@ -87,17 +87,15 @@ source_dir="$tmp_dir/localai-source"
 log "Installing LocalAI from ${LOCALAI_REPO_URL} (${LOCALAI_REF})"
 
 if have git; then
-  git clone --depth 1 --branch "$LOCALAI_REF" "$LOCALAI_REPO_URL" "$source_dir"
+  clone_ref="${LOCALAI_REF#refs/heads/}"
+  clone_ref="${clone_ref#refs/tags/}"
+  git clone --depth 1 --branch "$clone_ref" "$LOCALAI_REPO_URL" "$source_dir"
 else
   have tar || fail "git or tar is required."
   archive_file="$tmp_dir/localai.tar.gz"
   curl -fsSL "$(archive_url)" -o "$archive_file"
   mkdir -p "$source_dir"
-  tar -xzf "$archive_file" -C "$tmp_dir"
-  extracted="$(find "$tmp_dir" -mindepth 1 -maxdepth 1 -type d -name 'local-ai-server-*' | head -n 1)"
-  [[ -n "${extracted:-}" ]] || fail "Could not find extracted LocalAI source directory."
-  rm -rf "$source_dir"
-  mv "$extracted" "$source_dir"
+  tar -xzf "$archive_file" --strip-components=1 -C "$source_dir"
 fi
 
 [[ -x "$source_dir/install-local-ai.sh" ]] || fail "Installer not found: $source_dir/install-local-ai.sh"

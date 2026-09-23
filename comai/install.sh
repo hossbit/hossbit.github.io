@@ -83,17 +83,15 @@ source_dir="$tmp_dir/comai-source"
 log "Installing ComAI from ${COMAI_REPO_URL} (${COMAI_REF})"
 
 if have git; then
-  git clone --depth 1 --branch "$COMAI_REF" "$COMAI_REPO_URL" "$source_dir"
+  clone_ref="${COMAI_REF#refs/heads/}"
+  clone_ref="${clone_ref#refs/tags/}"
+  git clone --depth 1 --branch "$clone_ref" "$COMAI_REPO_URL" "$source_dir"
 else
   have tar || fail "git or tar is required."
   archive_file="$tmp_dir/comai.tar.gz"
   curl -fsSL "$(archive_url)" -o "$archive_file"
   mkdir -p "$source_dir"
-  tar -xzf "$archive_file" -C "$tmp_dir"
-  extracted="$(find "$tmp_dir" -mindepth 1 -maxdepth 1 -type d -name 'comai-linux-assistant-*' | head -n 1)"
-  [[ -n "${extracted:-}" ]] || fail "Could not find extracted ComAI source directory."
-  rm -rf "$source_dir"
-  mv "$extracted" "$source_dir"
+  tar -xzf "$archive_file" --strip-components=1 -C "$source_dir"
 fi
 
 [[ -x "$source_dir/scripts/install.sh" ]] || fail "Installer not found: $source_dir/scripts/install.sh"
