@@ -307,6 +307,11 @@
       gap: 18px;
     }
 
+    /* Let an unpaired card fill the row on desktop and mobile. */
+    .projects > .project:last-child:nth-child(odd) {
+      grid-column: 1 / -1;
+    }
+
     .project {
       display: flex;
       min-width: 0;
