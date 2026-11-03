@@ -360,8 +360,8 @@
     }
 
     .badge.localvllm {
-      background: #e4edff;
-      color: #1552bd;
+      background: var(--accent-soft);
+      color: var(--accent-strong);
     }
 
     .project h2 {
@@ -668,9 +668,6 @@
 
     /* Readable commands, clear navigation, and compact project hierarchy. */
     html { scroll-behavior: smooth; scroll-padding-top: 24px; }
-    .hero { min-height: 320px; }
-    h1 { font-size: clamp(40px, 5.4vw, 66px); line-height: 1.08; letter-spacing: -0.035em; text-shadow: none; }
-    .hero-copy p { max-width: 600px; font-size: 18px; }
     .project { scroll-margin-top: 24px; border-radius: 14px; box-shadow: 0 8px 30px rgba(23, 33, 28, 0.06); }
     .project-header { background: rgba(255, 253, 246, 0.6); border-radius: 14px 14px 0 0; }
     .badge { flex-shrink: 0; }
@@ -721,11 +718,11 @@
     <section class="hero" aria-labelledby="page-title">
       <div class="hero-copy">
         <p class="eyebrow">curl-ready Linux tools</p>
-        <h1 id="page-title">Local AI.<br><span class="headline-wrap">Your Linux machine.</span></h1>
+        <h1 id="page-title"><span class="headline-wrap"><span class="headline-badge">Install</span> useful things before your coffee gets suspicious.</span></h1>
         <p>
-          Choose a model server, copy one command, and get started.
-          Run GGUF models with LocalAI Server, serve vLLM and Omni models with
-          Local vLLM, or add terminal assistance with ComAI.
+          One-command installers for people who believe the terminal is a perfectly
+          reasonable place to live. Add ComAI for shell-side AI help, LocalAI
+          Server for GGUF models, or Local vLLM for vLLM and multimodal serving.
         </p>
       </div>
 
