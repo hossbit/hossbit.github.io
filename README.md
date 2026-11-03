@@ -15,3 +15,9 @@ GitHub Pages installer hub for hossbit Linux tools.
   ```bash
   curl -fsSL https://hossbit.github.io/localai/install.sh | bash
   ```
+
+- [Local vLLM](https://github.com/hossbit/local-ai-server-vllm)
+
+  ```bash
+  curl -fsSL https://hossbit.github.io/localvllm/install.sh | bash
+  ```

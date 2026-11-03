@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Hossbit installer hub for Linux lovers. Install ComAI, a Linux terminal AI assistant, and LocalAI Server, an OpenAI-compatible local GGUF model server, with one curl command.">
-  <meta name="keywords" content="Hossbit, Linux installer, ComAI, LocalAI Server, terminal AI assistant, local AI server, llama.cpp, GGUF, OpenAI compatible API, Bash installer, Linux tools">
+  <meta name="description" content="Hossbit installer hub for Linux lovers. Install ComAI, LocalAI Server, and Local vLLM with one command for Linux.">
+  <meta name="keywords" content="Hossbit, Linux installer, ComAI, LocalAI, Local vLLM, vLLM, vLLM-Omni, llama.cpp, GGUF, OpenAI compatible API, Linux">
   <meta name="author" content="hossbit">
   <meta name="robots" content="index, follow">
   <meta name="theme-color" content="#ffffff">
@@ -12,13 +12,13 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://hossbit.github.io/">
   <meta property="og:title" content="Hossbit: installers for Linux lovers.">
-  <meta property="og:description" content="One-command installers for ComAI and LocalAI Server. Built for Linux shells, local AI workflows, and people who read install scripts with one eyebrow raised.">
+  <meta property="og:description" content="One-command installers for ComAI, LocalAI Server, and Local vLLM. Built for Linux shells, local AI workflows, and people who read install scripts with one eyebrow raised.">
   <meta property="og:site_name" content="Hossbit Installers">
   <meta property="og:image" content="https://hossbit.github.io/assets/og-image.png">
   <meta property="og:image:type" content="image/png">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Hossbit: installers for Linux lovers.">
-  <meta name="twitter:description" content="One-command installers for ComAI and LocalAI Server, built for Linux lovers.">
+  <meta name="twitter:description" content="One-command installers for ComAI, LocalAI Server, and Local vLLM, built for Linux lovers.">
   <meta name="twitter:image" content="https://hossbit.github.io/assets/og-image.png">
   <script type="application/ld+json">
     {
@@ -26,7 +26,7 @@
       "@type": "WebSite",
       "name": "Hossbit Installers",
       "url": "https://hossbit.github.io/",
-      "description": "Installer hub for ComAI and LocalAI Server, two Linux AI tools from hossbit.",
+      "description": "Installer hub for ComAI, LocalAI Server, and Local vLLM from hossbit.",
       "publisher": {
         "@type": "Organization",
         "name": "hossbit",
@@ -46,6 +46,13 @@
           "applicationCategory": "DeveloperApplication",
           "operatingSystem": "Linux",
           "url": "https://github.com/hossbit/local-ai-server"
+        },
+        {
+          "@type": "SoftwareApplication",
+          "name": "Local vLLM",
+          "applicationCategory": "DeveloperApplication",
+          "operatingSystem": "Linux",
+          "url": "https://github.com/hossbit/local-ai-server-vllm"
         }
       ]
     }
@@ -347,6 +354,11 @@
       color: var(--coffee);
     }
 
+    .badge.localvllm {
+      background: #e4edff;
+      color: #1552bd;
+    }
+
     .project h2 {
       margin: 0;
       font-size: 24px;
@@ -621,7 +633,12 @@
         flex: 0 0 auto;
       }
 
-      .project h2 {
+      .badge.localvllm {
+      background: #e4edff;
+      color: #1552bd;
+    }
+
+    .project h2 {
         font-size: 22px;
         overflow-wrap: anywhere;
       }
@@ -660,6 +677,7 @@
       <div class="nav-links">
         <a href="https://github.com/hossbit/comai-linux-assistant">ComAI</a>
         <a href="https://github.com/hossbit/local-ai-server">LocalAI Server</a>
+        <a href="https://github.com/hossbit/local-ai-server-vllm">Local vLLM</a>
       </div>
     </nav>
 
@@ -669,8 +687,8 @@
         <h1 id="page-title"><span class="headline-wrap"><span class="headline-badge">Install</span> useful things before your coffee gets suspicious.</span></h1>
         <p>
           One-command installers for people who believe the terminal is a perfectly
-          reasonable place to live. Add ComAI for shell-side AI help, or LocalAI
-          Server for local GGUF models behind an OpenAI-compatible API.
+          reasonable place to live. Add ComAI for shell-side AI help, LocalAI
+          Server for GGUF models, or Local vLLM for vLLM and multimodal serving.
         </p>
       </div>
 
@@ -687,6 +705,7 @@
           <div><span class="cmd">$</span> choose project</div>
           <div class="note">1. ComAI terminal assistant</div>
           <div class="note">2. LocalAI model server</div>
+          <div class="note">3. Local vLLM server</div>
           <br>
           <div><span class="cmd">$</span> paste command</div>
           <div class="note">reading scripts before running is still a power move</div>
@@ -767,6 +786,38 @@
               <a class="button" href="/localai/install.sh">Install.sh</a>
               <a class="button" href="https://github.com/hossbit/local-ai-server/releases/latest">Releases</a>
               <a class="button" href="https://github.com/hossbit/comai-linux-assistant-wiki/blob/main/Local-AI-Service.md">Docs</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="project" id="localvllm">
+          <div class="project-header">
+            <div class="project-name">
+              <span class="badge localvllm">LV</span>
+              <div>
+                <h2>Local vLLM</h2>
+                <div class="project-kind">vLLM + vLLM-Omni server</div>
+              </div>
+            </div>
+            <a class="button" href="https://github.com/hossbit/local-ai-server-vllm">GitHub</a>
+          </div>
+          <div class="project-body">
+            <p>
+              Run text and supported multimodal models with isolated vLLM and
+              vLLM-Omni backends, an OpenAI-compatible API, and guided setup.
+              A supported GPU and working driver are recommended.
+            </p>
+            <div class="command-box">
+              <div class="command-label">
+                <span>Install Local vLLM</span>
+                <button class="copy" type="button" aria-label="Copy Local vLLM install command" data-copy="curl -fsSL https://hossbit.github.io/localvllm/install.sh | bash">Copy</button>
+              </div>
+              <pre><code>curl -fsSL https://hossbit.github.io/localvllm/install.sh | bash</code></pre>
+            </div>
+            <div class="actions">
+              <a class="button primary" href="https://github.com/hossbit/local-ai-server-vllm">Source</a>
+              <a class="button" href="/localvllm/install.sh">Install.sh</a>
+              <a class="button" href="https://github.com/hossbit/comai-linux-assistant-wiki/blob/main/Local-vLLM.md">Docs</a>
             </div>
           </div>
         </article>
