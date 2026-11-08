@@ -11,7 +11,7 @@ Input contract (see assets/progress.schema.json):
     raised_minor  int >= 0, in the currency's minor unit
     goal_minor    int > 0, in the currency's minor unit
     as_of         str, 1..30 chars (ISO date recommended)
-    sample        bool; true renders a visible "SAMPLE DATA - NOT LIVE" label
+    sample        bool; true renders a visible "Sample preview" label
 
 Exit codes: 0 success, 2 invalid input or I/O error.
 """
@@ -123,7 +123,7 @@ def generate(data: object) -> str:
     title = html.escape(d["campaign"], quote=True)
     as_of = html.escape(d["as_of"], quote=True)
     if d["sample"]:
-        state = f"SAMPLE DATA — NOT LIVE · as of {as_of}"
+        state = "Sample preview — live totals update automatically"
     else:
         state = f"As of {as_of}"
     state = html.escape(state, quote=True)
