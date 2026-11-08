@@ -19,6 +19,6 @@
   <rect x="32" y="142" width="696" height="16" rx="8" fill="#eef2f7" stroke="#e6ebf2"/>
   <rect x="32" y="142" width="8" height="16" rx="4" fill="url(#fill)"/>
   <rect x="32" y="143" width="8" height="6" rx="4" fill="#ffffff" opacity="0.18"/>
-  <text x="32" y="192" font-size="12" font-family="Arial, sans-serif" fill="#94a3b8">As of 2026-11-08 08:24 UTC</text>
+  <text x="32" y="192" font-size="12" font-family="Arial, sans-serif" fill="#94a3b8">As of 2026-11-08 15:23 UTC</text>
   <text x="728" y="192" text-anchor="end" font-size="12" font-family="Arial, sans-serif" fill="#cbd5e1">Updated hourly from Stripe</text>
 </svg>
