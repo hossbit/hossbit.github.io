@@ -1,0 +1,52 @@
+# Recomputes the donation total from Stripe and commits the refreshed SVG.
+#
+# Install as .github/workflows/update-donation-progress.yml in the target repo.
+# Requires repo secret STRIPE_RESTRICTED_KEY: a read-only restricted key (rk_...)
+# with Payment Links, Checkout Sessions, Charges and Disputes read permission.
+#
+# This workflow never runs on pull_request, so the secret is not exposed to
+# untrusted code. It only commits the generated SVG and the aggregate JSON.
+
+name: Update donation progress
+
+on:
+  schedule:
+    - cron: "23 * * * *" # hourly at :23 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: donation-progress
+  cancel-in-progress: true
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Recompute totals from Stripe
+        env:
+          STRIPE_API_KEY: ${{ secrets.STRIPE_RESTRICTED_KEY }}
+        run: |
+          python scripts/sync_stripe.py \
+            --config donation.config.json \
+            --output assets/donation-progress.svg
+
+      - name: Commit only when the numbers changed
+        run: |
+          if git diff --quiet -- donation.config.json assets/donation-progress.svg; then
+            echo "No change"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add donation.config.json assets/donation-progress.svg
+          git commit -m "chore: update donation progress"
+          git push
