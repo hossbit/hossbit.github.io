@@ -13,6 +13,11 @@ on:
   schedule:
     - cron: "23 * * * *" # hourly at :23 UTC
   workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Read-only check: print totals, write and commit nothing"
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -35,11 +40,16 @@ jobs:
         env:
           STRIPE_API_KEY: ${{ secrets.STRIPE_RESTRICTED_KEY }}
         run: |
+          ARGS=""
+          if [ "${{ github.event.inputs.dry_run }}" = "true" ]; then
+            ARGS="--dry-run"
+          fi
           python scripts/sync_stripe.py \
             --config donation.config.json \
-            --output assets/donation-progress.svg
+            --output assets/donation-progress.svg $ARGS
 
       - name: Commit only when the numbers changed
+        if: ${{ github.event.inputs.dry_run != 'true' }}
         run: |
           if git diff --quiet -- donation.config.json assets/donation-progress.svg; then
             echo "No change"
