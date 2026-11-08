@@ -110,13 +110,26 @@ def _money(minor: int, currency: str) -> str:
     return f"{prefix}{major:,.{decimals}f}{suffix} {currency}"
 
 
+def _pct_label(pct: float) -> str:
+    """Percent text that stays meaningful for tiny totals."""
+    if pct == 0:
+        return "0.0%"
+    if pct < 1:
+        return f"{pct:.2f}%"
+    return f"{pct:.1f}%"
+
+
 def generate(data: object) -> str:
     d = validate(data)
     raised, goal = d["raised_minor"], d["goal_minor"]
     pct = 100 * raised / goal
     bar_pct = min(pct, 100)
     width = round(700 * bar_pct / 100, 2)
+    if raised > 0 and width < 6:
+        # Keep the first small donation visible instead of a sub-pixel sliver.
+        width = 6.0
     radius = min(10, width / 2) if width else 0
+    pct_label = _pct_label(pct)
     width_attr = f"{width:.2f}".rstrip("0").rstrip(".")
     radius_attr = f"{radius:.2f}".rstrip("0").rstrip(".")
 
@@ -128,7 +141,7 @@ def generate(data: object) -> str:
         state = f"As of {as_of}"
     state = html.escape(state, quote=True)
     aria = html.escape(
-        f"{d['campaign']}: {pct:.1f} percent of {_money(goal, d['currency'])} goal funded",
+        f"{d['campaign']}: {pct_label.rstrip('%')} percent of {_money(goal, d['currency'])} goal funded",
         quote=True,
     )
 
@@ -137,7 +150,7 @@ def generate(data: object) -> str:
   <rect x="0" y="0" width="760" height="168" rx="16" fill="#f8fafc"/>
   <text x="30" y="37" font-size="21" font-family="Arial, sans-serif" font-weight="bold" fill="#172033">{title}</text>
   <text x="30" y="78" font-size="25" font-family="Arial, sans-serif" font-weight="bold" fill="#14202e">{html.escape(_money(raised, d["currency"]))} / {html.escape(_money(goal, d["currency"]))}</text>
-  <text x="730" y="78" text-anchor="end" font-size="20" font-family="Arial, sans-serif" fill="#334155">{pct:.1f}%</text>
+  <text x="730" y="78" text-anchor="end" font-size="20" font-family="Arial, sans-serif" fill="#334155">{pct_label}</text>
   <rect x="30" y="95" width="700" height="20" rx="10" fill="#e2e8f0"/>
   <rect x="30" y="95" width="{width_attr}" height="20" rx="{radius_attr}" fill="#16a34a"/>
   <text x="30" y="145" font-size="15" font-family="Arial, sans-serif" fill="#475569">{state}</text>
