@@ -688,6 +688,34 @@
       background: #f8fafc;
     }
     .donation-cta { margin-top: 12px; }
+    #support { scroll-margin-top: 24px; }
+    .support-card {
+      display: grid;
+      grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+      align-items: center;
+      gap: 26px;
+      margin: 6px 0 42px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 26px;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(255, 244, 199, 0.5));
+      box-shadow: var(--shadow);
+    }
+    .support-card h2 { margin: 0 0 8px; font-size: 24px; }
+    .support-card p { margin: 0 0 18px; color: var(--muted); line-height: 1.6; }
+    .support-card img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: #f8fafc;
+    }
+    .support-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 14px; }
+    .support-alt { color: var(--accent-strong); font-size: 14px; font-weight: 700; }
+    @media (max-width: 760px) {
+      .support-card { grid-template-columns: 1fr; padding: 20px; }
+    }
     .skip-link { position: fixed; top: -100px; left: 16px; padding: 12px 18px; background: var(--text); color: white; z-index: 20; border-radius: 8px; }
     .skip-link:focus { top: 12px; }
     .copy-status { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); z-index: 10; margin: 0; width: max-content; max-width: calc(100% - 32px); padding: 12px 18px; border-radius: 10px; background: var(--text); color: white; box-shadow: var(--shadow); font-size: 14px; }
@@ -722,6 +750,7 @@
         <a href="#localai">LocalAI Server</a>
         <a href="#localvllm">Local vLLM</a>
         <a href="#comai">ComAI</a>
+        <a href="#support">Support</a>
       </div>
     </nav>
 
@@ -757,6 +786,19 @@
           <div><span class="cmd">$</span> run useful stuff</div>
         </div>
       </aside>
+    </section>
+
+    <section class="support-card" id="support" aria-labelledby="support-title">
+      <div>
+        <p class="eyebrow">Support the project</p>
+        <h2 id="support-title">Help keep the lab running</h2>
+        <p>These installers are built and tested on a home lab. One-time donations go toward the hardware, storage, and power it takes to keep testing new models and releases.</p>
+        <div class="support-actions">
+          <a class="button primary" href="https://donate.stripe.com/3cIaEYaOCf0y35f6y88k800">Donate via Stripe</a>
+          <a class="support-alt" href="https://buymeacoffee.com/mirhh">or buy me a coffee</a>
+        </div>
+      </div>
+      <img src="assets/donation-progress.svg" alt="Donation progress toward the $15,000 home lab upgrade goal" width="760" height="168" loading="lazy" decoding="async">
     </section>
 
     <section id="projects" aria-label="Projects">
@@ -866,10 +908,6 @@
     <p id="copy-status" class="copy-status" role="status" aria-live="polite"></p>
     <div class="support-footer">
       <p>Made for Linux. Supported by the community.</p>
-      <div class="donation">
-        <img src="assets/donation-progress.svg" alt="Donation progress toward the home lab upgrade goal" width="760" height="168" loading="lazy" decoding="async">
-        <a class="button primary donation-cta" href="https://donate.stripe.com/3cIaEYaOCf0y35f6y88k800">Donate via Stripe</a>
-      </div>
       <div class="support">
         <a href="https://buymeacoffee.com/mirhh">
           <img src="https://raw.githubusercontent.com/hossbit/mirassets/main/images/bmc-button.webp" alt="Buy me a coffee" width="300">
