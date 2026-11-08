@@ -119,21 +119,25 @@ def _pct_label(pct: float) -> str:
     return f"{pct:.1f}%"
 
 
+def _clip(text: str, limit: int) -> str:
+    return text if len(text) <= limit else text[: limit - 1].rstrip() + "…"
+
+
 def generate(data: object) -> str:
     d = validate(data)
     raised, goal = d["raised_minor"], d["goal_minor"]
     pct = 100 * raised / goal
     bar_pct = min(pct, 100)
-    width = round(700 * bar_pct / 100, 2)
-    if raised > 0 and width < 6:
+    width = round(696 * bar_pct / 100, 2)
+    if raised > 0 and width < 8:
         # Keep the first small donation visible instead of a sub-pixel sliver.
-        width = 6.0
-    radius = min(10, width / 2) if width else 0
+        width = 8.0
+    radius = min(7, width / 2) if width else 0
     pct_label = _pct_label(pct)
     width_attr = f"{width:.2f}".rstrip("0").rstrip(".")
     radius_attr = f"{radius:.2f}".rstrip("0").rstrip(".")
 
-    title = html.escape(d["campaign"], quote=True)
+    title = html.escape(_clip(d["campaign"], 56), quote=True)
     as_of = html.escape(d["as_of"], quote=True)
     if d["sample"]:
         state = "Sample preview — live totals update automatically"
@@ -144,16 +148,29 @@ def generate(data: object) -> str:
         f"{d['campaign']}: {pct_label.rstrip('%')} percent of {_money(goal, d['currency'])} goal funded",
         quote=True,
     )
+    raised_text = html.escape(_money(raised, d["currency"]))
+    goal_text = html.escape(_money(goal, d["currency"]))
 
-    return f'''<svg xmlns="http://www.w3.org/2000/svg" width="760" height="168" viewBox="0 0 760 168" role="img" aria-label="{aria}">
+    return f'''<svg xmlns="http://www.w3.org/2000/svg" width="760" height="184" viewBox="0 0 760 184" role="img" aria-label="{aria}">
   <title>{title} — fundraising progress</title>
-  <rect x="0" y="0" width="760" height="168" rx="16" fill="#f8fafc"/>
-  <text x="30" y="37" font-size="21" font-family="Arial, sans-serif" font-weight="bold" fill="#172033">{title}</text>
-  <text x="30" y="78" font-size="25" font-family="Arial, sans-serif" font-weight="bold" fill="#14202e">{html.escape(_money(raised, d["currency"]))} / {html.escape(_money(goal, d["currency"]))}</text>
-  <text x="730" y="78" text-anchor="end" font-size="20" font-family="Arial, sans-serif" fill="#334155">{pct_label}</text>
-  <rect x="30" y="95" width="700" height="20" rx="10" fill="#e2e8f0"/>
-  <rect x="30" y="95" width="{width_attr}" height="20" rx="{radius_attr}" fill="#16a34a"/>
-  <text x="30" y="145" font-size="15" font-family="Arial, sans-serif" fill="#475569">{state}</text>
+  <defs>
+    <linearGradient id="card" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#f5f8fc"/>
+    </linearGradient>
+    <linearGradient id="fill" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#4ade80"/>
+      <stop offset="1" stop-color="#16a34a"/>
+    </linearGradient>
+  </defs>
+  <rect x="0.5" y="0.5" width="759" height="183" rx="18" fill="url(#card)" stroke="#e5eaf1"/>
+  <text x="32" y="38" font-size="12" font-family="Arial, sans-serif" font-weight="700" letter-spacing="1.4" fill="#94a3b8">FUNDRAISING PROGRESS</text>
+  <text x="32" y="66" font-size="19" font-family="Arial, sans-serif" font-weight="700" fill="#0f172a">{title}</text>
+  <text x="32" y="104" font-size="27" font-family="Arial, sans-serif" font-weight="800" fill="#0f172a">{raised_text}<tspan font-size="15" font-weight="600" fill="#64748b"> of {goal_text}</tspan></text>
+  <text x="728" y="104" text-anchor="end" font-size="21" font-family="Arial, sans-serif" font-weight="800" fill="#15803d">{pct_label}</text>
+  <rect x="32" y="124" width="696" height="14" rx="7" fill="#e7edf4"/>
+  <rect x="32" y="124" width="{width_attr}" height="14" rx="{radius_attr}" fill="url(#fill)"/>
+  <text x="32" y="166" font-size="12" font-family="Arial, sans-serif" fill="#94a3b8">{state}</text>
 </svg>
 '''
 

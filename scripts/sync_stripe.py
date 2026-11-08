@@ -208,7 +208,7 @@ def main(argv: list[str] | None = None) -> int:
         print(f"error: {exc}", file=sys.stderr)
         return 3
 
-    as_of = dt.datetime.now(dt.timezone.utc).date().isoformat()
+    as_of = dt.datetime.now(dt.timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
     config = build_config(existing, totals, bool(link.get("livemode")), as_of)
 
     print(
