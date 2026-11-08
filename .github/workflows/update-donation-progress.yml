@@ -12,6 +12,7 @@ name: Update donation progress
 on:
   schedule:
     - cron: "23 * * * *" # hourly at :23 UTC
+    - cron: "47 * * * *" # hourly at :47 UTC (fallback if :23 is dropped)
   workflow_dispatch:
     inputs:
       dry_run:
