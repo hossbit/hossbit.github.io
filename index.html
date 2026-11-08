@@ -712,9 +712,34 @@
       background: #f8fafc;
     }
     .support-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 14px; }
-    .support-alt { color: var(--accent-strong); font-size: 14px; font-weight: 700; }
+    .btn-donate {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      padding: 13px 24px;
+      border: 1px solid #d9a400;
+      border-radius: 10px;
+      background: linear-gradient(180deg, #ffd24a, #f3b700);
+      box-shadow: 0 6px 16px rgba(243, 183, 0, 0.35);
+      color: #241a00;
+      font-size: 15px;
+      font-weight: 800;
+      text-decoration: none;
+      transition: transform 160ms ease, box-shadow 160ms ease, background 160ms ease;
+    }
+    .btn-donate:hover {
+      transform: translateY(-2px);
+      background: linear-gradient(180deg, #ffdd72, #ffc21a);
+      box-shadow: 0 10px 22px rgba(243, 183, 0, 0.45);
+    }
+    .btn-donate:focus-visible {
+      outline: 3px solid var(--accent-strong);
+      outline-offset: 2px;
+    }
     @media (max-width: 760px) {
       .support-card { grid-template-columns: 1fr; padding: 20px; }
+      .btn-donate { width: 100%; max-width: 320px; }
     }
     .skip-link { position: fixed; top: -100px; left: 16px; padding: 12px 18px; background: var(--text); color: white; z-index: 20; border-radius: 8px; }
     .skip-link:focus { top: 12px; }
@@ -794,8 +819,10 @@
         <h2 id="support-title">Help keep the lab running</h2>
         <p>These installers are built and tested on a home lab. One-time donations go toward the hardware, storage, and power it takes to keep testing new models and releases.</p>
         <div class="support-actions">
-          <a class="button primary" href="https://donate.stripe.com/3cIaEYaOCf0y35f6y88k800">Donate via Stripe</a>
-          <a class="support-alt" href="https://buymeacoffee.com/mirhh">or buy me a coffee</a>
+          <a class="btn-donate" href="https://donate.stripe.com/3cIaEYaOCf0y35f6y88k800">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+            Donate via Stripe
+          </a>
         </div>
       </div>
       <img src="assets/donation-progress.svg" alt="Donation progress toward the $15,000 home lab upgrade goal" width="760" height="168" loading="lazy" decoding="async">
