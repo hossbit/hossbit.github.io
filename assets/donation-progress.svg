@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="760" height="208" viewBox="0 0 760 208" role="img" aria-label="Upgrade My Home Lab: 0.01 percent of $15,000.00 USD goal funded">
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="208" viewBox="0 0 760 208" role="img" aria-label="Upgrade My Home Lab: 0.02 percent of $15,000.00 USD goal funded">
   <title>Upgrade My Home Lab — fundraising progress</title>
   <defs>
     <linearGradient id="card" x1="0" y1="0" x2="0" y2="1">
@@ -14,11 +14,11 @@
   <text x="32" y="40" font-size="11" font-family="Arial, sans-serif" font-weight="700" letter-spacing="1.6" fill="#94a3b8">FUNDRAISING PROGRESS</text>
   <text x="32" y="72" font-size="20" font-family="Arial, sans-serif" font-weight="700" fill="#0f172a">Upgrade My Home Lab</text>
   <rect x="611" y="90" width="117" height="30" rx="15" fill="#ecfdf5" stroke="#bbf7d0"/>
-  <text x="669.5" y="110" text-anchor="middle" font-size="13.5" font-family="Arial, sans-serif" font-weight="800" fill="#15803d">0.01% funded</text>
-  <text x="32" y="118" font-size="32" font-family="Arial, sans-serif" font-weight="800" fill="#0f172a">$2.00 USD<tspan font-size="15" font-weight="600" fill="#64748b"> of $15,000.00 USD</tspan></text>
+  <text x="669.5" y="110" text-anchor="middle" font-size="13.5" font-family="Arial, sans-serif" font-weight="800" fill="#15803d">0.02% funded</text>
+  <text x="32" y="118" font-size="32" font-family="Arial, sans-serif" font-weight="800" fill="#0f172a">$3.00 USD<tspan font-size="15" font-weight="600" fill="#64748b"> of $15,000.00 USD</tspan></text>
   <rect x="32" y="142" width="696" height="16" rx="8" fill="#eef2f7" stroke="#e6ebf2"/>
   <rect x="32" y="142" width="8" height="16" rx="4" fill="url(#fill)"/>
   <rect x="32" y="143" width="8" height="6" rx="4" fill="#ffffff" opacity="0.18"/>
-  <text x="32" y="192" font-size="12" font-family="Arial, sans-serif" fill="#94a3b8">As of 2026-11-23 20:37 UTC</text>
+  <text x="32" y="192" font-size="12" font-family="Arial, sans-serif" fill="#94a3b8">As of 2026-11-24 02:22 UTC</text>
   <text x="728" y="192" text-anchor="end" font-size="12" font-family="Arial, sans-serif" fill="#cbd5e1">Auto-synced from Stripe</text>
 </svg>
